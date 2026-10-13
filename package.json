@@ -25,6 +25,7 @@
     "eslint": "^9",
     "eslint-config-next": "16.4.0",
     "postcss": "^8.5.30",
+    "tailwind-scrollbar": "^4.0.2",
     "tailwindcss": "^4",
     "typescript": "^5"
   }

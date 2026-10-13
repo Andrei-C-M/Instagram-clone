@@ -5,7 +5,7 @@ import { HomeIcon} from "@heroicons/react/24/solid"
 export default function Header() {
   return (
     // changed z-index to 30 so it is always on top
-    <header className="sticky top-0 z-30 flex items-center justify-between cursor-pointer p-4 bg-white border-b-2 border-gray-300 shadow-sm xl:mx-auto">
+    <header className="sticky top-0 rounded-b-sm z-30 flex items-center justify-between cursor-pointer p-4 bg-white border-b-2 border-gray-300 shadow-sm xl:mx-auto">
       {/* left */}
       <Image
         className="h-auto w-24 sm:w-28"
@@ -30,7 +30,7 @@ export default function Header() {
         <HomeIcon className="hidden md:inline-flex h-6 cursor-pointer hover:scale-125 transition-transform duration-200 ease-out"/>
         <PlusCircleIcon className="hidden md:inline-flex h-6 cursor-pointer hover:scale-125 transition-transform duration-200 ease-out"/>
         <Image
-            className="w-10 h-auto rounded-full cursor-pointer hover:scale-125 transition-transform duration-200 ease-out"
+            className="w-14 p-2 h-auto rounded-full cursor-pointer hover:scale-125 transition-transform duration-200 ease-out"
             src="/images/avatar.jpg"
             alt="Profile photo"
             width={ 100 }
