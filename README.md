@@ -23,3 +23,10 @@ npm run dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) in your browser to view the app.
+
+## Environment variables
+
+Create a `.env.local` file in the project root and add your Unsplash Access Key:
+
+```env
+UNSPLASH_ACCESS_KEY=your_access_key_here

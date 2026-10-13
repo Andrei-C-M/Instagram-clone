@@ -13,6 +13,7 @@ export default function Header() {
         alt="Thegram logo"
         width={120}
         height={60}
+        loading="eager"
       />
 
       {/* middle */}
