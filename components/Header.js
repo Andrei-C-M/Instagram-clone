@@ -5,8 +5,8 @@ import { HomeIcon} from "@heroicons/react/24/solid"
 
 export default function Header() {
   return (
-    <header className="flex items-center justify-between cursor-pointer p-4 bg-white border-b-2 border-gray-300 shadow-sm xl:mx-auto">
-      
+    // changed z-index to 30 so it is always on top
+    <header className="sticky top-0 z-30 flex items-center justify-between cursor-pointer p-4 bg-white border-b-2 border-gray-300 shadow-sm xl:mx-auto">
       {/* left */}
       <Image
         className="h-auto w-24 sm:w-28"
