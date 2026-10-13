@@ -13,7 +13,6 @@ export default function Posts() {
         image: "",
         imageAlt: "",
         caption: "Nice picture"
-
     }
   ]);
   useEffect(() => {
