@@ -26,6 +26,8 @@ Open [http://localhost:3000](http://localhost:3000) in your browser to view the 
 
 ## Environment variables
 
+This project uses the Unsplash API to get random images for each post. You need to create an account on Unsplash and generate an access key.
+ 
 Create a `.env.local` file in the project root and add your Unsplash Access Key:
 
 ```env
