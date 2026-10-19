@@ -4,7 +4,7 @@ TheGram is an Instagram-inspired web app built with Next.js, React, and Tailwind
 
 This project is a work in progress.
 <br>
-Progress: 🟩🟨⬜⬜⬜ 40%
+Progress: 🟩🟩🟨⬜⬜ 40%
 <br>     
 
 
