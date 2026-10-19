@@ -11,7 +11,9 @@ export default function Feed() {
             <Suspense fallback={null}>
                 <Stories />
             </Suspense>
-            <Posts />
+            <Suspense fallback={null}>
+                <Posts />
+            </Suspense>
         </section>
 
         <section>
