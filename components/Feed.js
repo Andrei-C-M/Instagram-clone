@@ -1,4 +1,5 @@
 
+import { Suspense } from "react";
 import Stories from "./Stories";
 import Posts from "./Posts";
 
@@ -7,7 +8,9 @@ export default function Feed() {
   return (
     <main>
         <section>
-            <Stories />
+            <Suspense fallback={null}>
+                <Stories />
+            </Suspense>
             <Posts />
         </section>
 

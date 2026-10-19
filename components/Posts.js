@@ -24,7 +24,6 @@ export default function Posts() {
       }
 
       const photo = await response.json();
-
       setPosts((currentPosts) =>
         currentPosts.map((post) =>
           post.id === "1"
