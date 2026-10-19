@@ -71,15 +71,17 @@ export default function PostsClient({ initialPosts }) {
   return (
     <div>
       {posts.map((post) => (
-        <article key={post.id}>
+        <article key={post.id} className="flex flex-col">
           <img
+            className="h-14 w-14 m-2 rounded-full p-[1.5px] border-red-500 border-2 cursor-pointer hover:scale-110 transition-transform duration-200 ease-out"
             src={post.userImage}
             alt={`${post.username}'s profile`}
             width={40}
             height={40}
           />
-          <p>{post.username}</p>
+          <p className="text-left ml-2">{post.username}</p>
           {post.image && <img src={post.image} alt={post.imageAlt} />}
+          <span className="h-1 bg-gray-200 mt-2 mb-4"></span>
         </article>
       ))}
     </div>

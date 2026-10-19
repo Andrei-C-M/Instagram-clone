@@ -7,6 +7,7 @@ export default async function Posts() {
   await connection();
 
   //Create an array with 10 posts
+  //This is a server component
 
   const initialPosts = array(10, (id) => ({
     id: String(id + 1),
