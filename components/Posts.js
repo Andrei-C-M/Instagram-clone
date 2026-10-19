@@ -12,36 +12,87 @@ export default function Posts() {
         userImage: "https://i.pravatar.cc/150?img=${Math.ceil(Math.random() * 70)}",
         image: "",
         imageAlt: "",
-        caption: "Nice picture"
+        caption: "This is awesome!"
+    },
+        {
+        id: "2",
+        username: "JohnDoe",
+        userImage: "https://i.pravatar.cc/150?img=${Math.ceil(Math.random() * 70)}",
+        image: "",
+        imageAlt: "",
+        caption: "This is awesome!"
+    },
+        {
+        id: "3",
+        username: "JohnDoe",
+        userImage: "https://i.pravatar.cc/150?img=${Math.ceil(Math.random() * 70)}",
+        image: "",
+        imageAlt: "",
+        caption: "This is awesome!"
     }
   ]);
   useEffect(() => {
-    async function loadPhoto() {
-      const response = await fetch("/api/random-photo");
+    const postsWithoutImages = posts.filter((post) => !post.image);
+    if (postsWithoutImages.length === 0) return;
 
-      if (!response.ok) {
-        throw new Error("Could not load a photo from Unsplash");
-      }
+    const controller = new AbortController();
 
-      const photo = await response.json();
+    async function loadPhotos() {
+      const results = await Promise.allSettled(
+        postsWithoutImages.map(async (post) => {
+          const response = await fetch("/api/random-photo", {
+            signal: controller.signal,
+          });
+
+          if (!response.ok) {
+            throw new Error(
+              `Could not load a photo for post ${post.id} (status ${response.status})`
+            );
+          }
+
+          const photo = await response.json();
+          if (!photo.urls?.regular) {
+            throw new Error(`Unsplash returned no image URL for post ${post.id}`);
+          }
+
+          return {
+            id: post.id,
+            image: photo.urls.regular,
+            imageAlt:
+              photo.alt_description ||
+              photo.description ||
+              "Photo from Unsplash",
+          };
+        })
+      );
+
+      if (controller.signal.aborted) return;
+
+      const photosByPostId = new Map();
+      results.forEach((result) => {
+        if (result.status === "fulfilled") {
+          photosByPostId.set(result.value.id, result.value);
+        } else {
+          console.error(result.reason);
+        }
+      });
+
+      if (photosByPostId.size === 0) return;
+
       setPosts((currentPosts) =>
-        currentPosts.map((post) =>
-          post.id === "1"
-            ? {
-                ...post,
-                image: photo.urls.regular,
-                imageAlt:
-                  photo.alt_description ||
-                  photo.description ||
-                  "Photo from Unsplash",
-              }
-            : post
-        )
+        currentPosts.map((post) => ({
+          ...post,
+          ...(photosByPostId.get(post.id) || {}),
+        }))
       );
     }
 
-    loadPhoto().catch((error) => console.error(error));
-  }, []);
+    loadPhotos().catch((error) => {
+      if (!controller.signal.aborted) console.error(error);
+    });
+
+    return () => controller.abort();
+  }, [posts]);
 
   return (
     <div>
