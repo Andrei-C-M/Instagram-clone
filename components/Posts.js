@@ -18,5 +18,10 @@ export default async function Posts() {
     caption: "This is awesome!",
   }));
 
-  return <PostsClient initialPosts={initialPosts} />;
+  return (
+    <div>
+      {/* Posts header */}
+      <PostsClient initialPosts={initialPosts} />;
+    </div>
+  )
 }
